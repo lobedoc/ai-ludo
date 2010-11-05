@@ -182,4 +182,8 @@ public class Game implements Renderable {
         }
         players.add(player);
     }
+
+    public List<Player> getPlayers() {
+        return this.players;
+    }
 }
