@@ -27,11 +27,17 @@ import de.uni_mannheim.informatik.ai.ludo.model.Player;
  * @author Dominique Ritze
  */
 public class SimpleUtilityFunction implements UtilityFunction{
+    
+    Weights weights;
+
+    public SimpleUtilityFunction(Weights weights) {
+        this.weights = weights;
+    }
 
     @Override
-    public int getScore(Pawn pawn) {
+    public double getScore(Pawn pawn) {
 
-        int score = 0;
+        double score = 0.0;
         Path path = pawn.getOwner().getPath();
 
         Field ownField = path.getFieldOfPawn(pawn);
@@ -51,34 +57,34 @@ public class SimpleUtilityFunction implements UtilityFunction{
                             && !(index>40)) {
                         //beat other pawn directly
                         if(index+game.getDice().getCount() == indexOpp) {
-                            score += 20;
+                            score += weights.DIRECT_BEAT;
                         }
                         //get into range to beat the opponent pawn
                         if(inRange(index+game.getDice().getCount(),indexOpp)) {
-                            score +=5;
+                            score += weights.INDIRECT_BEAT;
                         }
                         //get out of beating range
                         if(inRange(indexOpp, index) && !inRange(indexOpp,index+game.getDice().getCount())) {
-                            score += 25;
+                            score += weights.ESCAPE_POSSIBLE_BEAT;
                         }
                         //negative
                         //get within a beatable range
                         if(!inRange(indexOpp, index) && inRange(indexOpp, index+game.getDice().getCount())) {
-                            score -= 25;
+                            score -= weights.ENTER_POSSIBLE_BEAT;
                         }
                         //get onto another start field
                         //TODO check whether pawns are inside or not?
                         if(index+game.getDice().getCount()%10 == 0) {
-                            score -= 25;
+                            score -= weights.START_POSITION;
                         }
                         
                     }
                     //get to target field
                     if(index+game.getDice().getCount()>40) {
-                        score += 30;
+                        score += weights.ENTER_TARGET;
                     }
                     //bonus 
-                    score += index;
+                    score += index*weights.PROGRESS_FACTOR/40;
                 }
             }
         return score;

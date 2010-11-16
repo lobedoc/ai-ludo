@@ -132,6 +132,8 @@ public class Game implements Renderable {
     }
 
     public void endGame() {
+       System.out.println("end");
+       System.exit(0);
         // Some crucial cleanup
     }
 

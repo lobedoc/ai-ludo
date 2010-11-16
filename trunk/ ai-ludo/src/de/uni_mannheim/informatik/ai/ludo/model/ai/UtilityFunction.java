@@ -24,6 +24,6 @@ import de.uni_mannheim.informatik.ai.ludo.model.Pawn;
  */
 public interface UtilityFunction {
 
-    public int getScore(Pawn pawn);
+    public double getScore(Pawn pawn);
 
 }
