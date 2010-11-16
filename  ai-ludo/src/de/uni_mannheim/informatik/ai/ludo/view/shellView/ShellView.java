@@ -83,37 +83,37 @@ public class ShellView implements View {
 
     private void diceRolled(NotificationEvent e) {
         Game game = (Game) e.getSource();
-        System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] rolled the dice. Dice count: " + game.getDice().getCount());
+ //       System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] rolled the dice. Dice count: " + game.getDice().getCount());
     }
 
     private void noMoreAttemps(NotificationEvent e) {
         Game game = (Game) e.getSource();
-        System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] has no more attemps. Next player.");
+ //       System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] has no more attemps. Next player.");
     }
 
     private void pawnEnteredThrewEnemyPawn(NotificationEvent e) {
         Pawn enemyPawn = (Pawn) e.getSource();
         Game game = Game.getInstance();
-        System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] threw pawn on entry. Enemy pawn Owner: " + enemyPawn.getOwner().getName() + " [" + enemyPawn.getOwner().getClass().getName() + "]");
+ //       System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] threw pawn on entry. Enemy pawn Owner: " + enemyPawn.getOwner().getName() + " [" + enemyPawn.getOwner().getClass().getName() + "]");
     }
 
     private void pawnEntered(NotificationEvent e) {
         Game game = Game.getInstance();
-        System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] enters the arena.");
+ //       System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] enters the arena.");
     }
 
     private void refresh(NotificationEvent e) {
-        System.out.println("[REFRESH]");
+ //       System.out.println("[REFRESH]");
     }
 
     private void triedToMoveNonmoveablePawn(NotificationEvent e) {
         Game game = (Game) e.getSource();
-        System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] tried to move a pawn which is unmoveable. Let's give him another chance.");
+//        System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] tried to move a pawn which is unmoveable. Let's give him another chance.");
     }
 
     private void noMoveablePawns(NotificationEvent e) {
         Game game = (Game) e.getSource();
-        System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] has no moveable pawns. Finish this round.");
+ //       System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] has no moveable pawns. Finish this round.");
     }
 
     private void gameWon(NotificationEvent e) {
@@ -123,39 +123,39 @@ public class ShellView implements View {
 
     private void nextRoundWithSamePlayer(NotificationEvent e) {
         Game game = (Game) e.getSource();
-        System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] threw a 6. Next round with same player.");
+  //      System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] threw a 6. Next round with same player.");
     }
 
     private void nextRoundWithNextPlayer(NotificationEvent e) {
         Game game = (Game) e.getSource();
-        System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] didn't threw a 6. Next round with next player.");
+  //      System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] didn't threw a 6. Next round with next player.");
     }
 
     private void newGame(NotificationEvent e) {
-        System.out.println("New game with same configuration started.");
+  //      System.out.println("New game with same configuration started.");
     }
 
     private void endGame(NotificationEvent e) {
-        System.out.println("End game.");
+  //      System.out.println("End game.");
     }
 
     private void startWritingStatistics(NotificationEvent e) {
-        System.out.println("Start writing statistics.");
+  //      System.out.println("Start writing statistics.");
     }
 
     private void endWritingStatistics(NotificationEvent e) {
-        System.out.println("End writing statistics.");
+  //      System.out.println("End writing statistics.");
     }
 
     private void moveablePawnMoved(NotificationEvent e) {
         Game game = (Game) e.getSource();
-        System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] moved a moveable pawn.");
+ //       System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] moved a moveable pawn.");
     }
 
     private void enemyPawnThrown(NotificationEvent e) {
         Pawn enemyPawn = (Pawn) e.getSource();
         Game game = Game.getInstance();
-        System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] threw a pawn. Enemy pawn Owner: " + enemyPawn.getOwner().getName() + " [" + enemyPawn.getOwner().getClass().getName() + "]");
+ //       System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] threw a pawn. Enemy pawn Owner: " + enemyPawn.getOwner().getName() + " [" + enemyPawn.getOwner().getClass().getName() + "]");
     }
 
     private class NotificationListener implements NotificationEventListener {

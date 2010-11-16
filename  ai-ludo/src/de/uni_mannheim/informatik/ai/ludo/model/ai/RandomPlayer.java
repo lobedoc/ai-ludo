@@ -119,4 +119,9 @@ public class RandomPlayer implements Player {
     public void takeRenderer(Renderer renderer) {
         renderer.render(this);
     }
+
+    @Override
+    public void reset() {
+
+    }
 }

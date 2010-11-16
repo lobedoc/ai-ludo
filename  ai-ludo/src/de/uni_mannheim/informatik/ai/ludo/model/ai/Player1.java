@@ -25,6 +25,7 @@ import de.uni_mannheim.informatik.ai.ludo.model.Pawn;
 import de.uni_mannheim.informatik.ai.ludo.model.Player;
 import de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEvent;
 import de.uni_mannheim.informatik.ai.ludo.view.renderer.Renderer;
+import java.util.ArrayList;
 
 /**
  * This artificial Player is a random player which acts randomly.
@@ -33,9 +34,17 @@ import de.uni_mannheim.informatik.ai.ludo.view.renderer.Renderer;
 public class Player1 implements Player {
 
     private Pawn[] pawns;
+    private ArrayList<Pawn> possiblePawns = new ArrayList<Pawn>();
     private Game.Color color;
     private Path path;
     private String name;
+    private Weights weights;
+    private Pawn pawnToMove;
+
+    public Player1() {
+        this.weights = new Weights();
+        System.out.println(weights);
+    }
 
     @Override
     public void setColor(Color color) {
@@ -49,23 +58,25 @@ public class Player1 implements Player {
 
     @Override
     public void movePawn() {
-        int maximalValue = -100;
-        Pawn pawnToMove = pawns[0];
+        double maximalValue = -100;
+        pawnToMove = this.possiblePawns.get(0);
         //iterate over all own pawns and choose the one with the biggest score
-        for(int i=0; i<this.pawns.length; i++){
+        for(int i=0; i<this.possiblePawns.size(); i++){
             //get the socre of the utility measure for each pawn
-            SimpleUtilityFunction utilityMeasure = new SimpleUtilityFunction();
-            if(maximalValue< utilityMeasure.getScore(pawns[i])) {
-                maximalValue = utilityMeasure.getScore(pawns[i]);
-                pawnToMove = pawns[i];
+            SimpleUtilityFunction utilityMeasure = new SimpleUtilityFunction(this.weights);
+            if(maximalValue< utilityMeasure.getScore(possiblePawns.get(i))) {
+                maximalValue = utilityMeasure.getScore(possiblePawns.get(i));
+                pawnToMove = possiblePawns.get(i);
             }
         }
         //move the pawn
         IntentFactory.getInstance().createAndDispatchMoveIntent(Game.getInstance(), pawnToMove);
+    //    randomPawn = pawns[(int)(100*Math.random()%pawns.length)];
+    //    IntentFactory.getInstance().createAndDispatchMoveIntent(Game.getInstance(), randomPawn);
     }
 
     @Override
-    public void rollTheDice() {
+    public void rollTheDice() {        
         Game game = Game.getInstance();
         // Roll the dice
         game.getDice().rollDice();
@@ -78,6 +89,9 @@ public class Player1 implements Player {
     @Override
     public void setPawns(Pawn[] pawns) {
         this.pawns = pawns;
+        for(int i=0; i<4; i++) {
+            possiblePawns.add(this.pawns[i]);
+        }
     }
 
     @Override
@@ -102,10 +116,18 @@ public class Player1 implements Player {
 
     @Override
     public void rejectIntent(PlayerIntent intent) {
+        possiblePawns.remove(possiblePawns.indexOf(pawnToMove));
     }
 
     @Override
     public void successIntent(PlayerIntent intent) {
+        if(possiblePawns.size() == 4) {
+            return;
+        }
+        possiblePawns.clear();
+        for(int i=0; i<4; i++) {
+            possiblePawns.add(this.pawns[i]);
+        }
     }
 
     @Override
@@ -114,6 +136,7 @@ public class Player1 implements Player {
 
     @Override
     public void gameWonByIntent(PlayerIntent intent) {
+        
     }
 
     @Override
@@ -129,5 +152,11 @@ public class Player1 implements Player {
     @Override
     public void takeRenderer(Renderer renderer) {
         renderer.render(this);
+    }
+
+    @Override
+    public void reset() {
+        this.weights = new Weights();
+        System.out.println(weights);
     }
 }

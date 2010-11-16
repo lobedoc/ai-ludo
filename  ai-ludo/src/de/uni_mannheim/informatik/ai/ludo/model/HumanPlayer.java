@@ -93,4 +93,9 @@ public class HumanPlayer implements Player{
         renderer.render(this);
     }
 
+    @Override
+    public void reset() {
+        
+    }
+
 }

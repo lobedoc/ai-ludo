@@ -129,4 +129,6 @@ public interface Player extends Renderable{
      * @param intent the player intent which lead to the win
      */
     public void gameWonByIntent(PlayerIntent intent);
+
+    public void reset();
 }
