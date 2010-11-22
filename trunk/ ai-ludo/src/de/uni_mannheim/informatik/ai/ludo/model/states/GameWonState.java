@@ -20,11 +20,12 @@ import de.uni_mannheim.informatik.ai.ludo.intent.EndGameIntent;
 import de.uni_mannheim.informatik.ai.ludo.intent.IntentFactory;
 import de.uni_mannheim.informatik.ai.ludo.intent.MoveIntent;
 import de.uni_mannheim.informatik.ai.ludo.intent.NewGameIntent;
-import de.uni_mannheim.informatik.ai.ludo.intent.PlayerIntent;
 import de.uni_mannheim.informatik.ai.ludo.intent.RollDiceIntent;
 import de.uni_mannheim.informatik.ai.ludo.intent.TransitionIntent;
 import de.uni_mannheim.informatik.ai.ludo.model.Game;
 import de.uni_mannheim.informatik.ai.ludo.model.Player;
+import de.uni_mannheim.informatik.ai.ludo.model.ai.GeneticUtility;
+import de.uni_mannheim.informatik.ai.ludo.model.ai.Player1;
 import de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEvent;
 import de.uni_mannheim.informatik.ai.ludo.model.events.RequestForUserInputEvent;
 import de.uni_mannheim.informatik.ai.ludo.model.preferences.Preferences;
@@ -42,18 +43,22 @@ public class GameWonState implements GameState {
         // Get the game
         Game game = intent.getTarget();
         // Tell the statistics, that the current player has won
-        Statistics.getInstance().gameWonByPlayer(intent, game.getCurrentPlayer());
-        //reset all players, e.g. necessary within the simulation
-        for(Player p : game.getPlayers()) {
-            p.reset();
-        }
+        Statistics.getInstance().gameWonByPlayer(intent, game.getCurrentPlayer());                
         // Tell the game, that this game has been played
         game.increaseGamesPlayed();
         // When the game is in simulation mode, we proceed to the next game or end (MAX_GAMES = currentGame)
         int gamesPlayed = game.getGamesPlayed();
         int maxGames = Preferences.getInstance().getMaxRound();
-        // 1. simulation
+
+        // 1. learning
+        if(Preferences.getInstance().isInLearningMode()) {
+            GeneticUtility.procedureAfterGame(game);
+            return;
+        }
+
+        // 2. simulation
         if (Preferences.getInstance().isInSimulationMode()) {
+
             // 1.1 End this game
             if (gamesPlayed >= maxGames) {
                 game.setState(new EndState());
@@ -67,7 +72,7 @@ public class GameWonState implements GameState {
             IntentFactory.getInstance().createAndDispatchNewGameIntent(game);
             return;
         }
-        // 2. no simulation
+        // 3. no simulation
         game.fireRequestForUserInputEvent(new RequestForUserInputEvent(game, RequestForUserInputEvent.Type.GAME_END_REACHED));
     }
 

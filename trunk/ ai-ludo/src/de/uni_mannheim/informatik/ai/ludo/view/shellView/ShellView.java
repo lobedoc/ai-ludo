@@ -118,7 +118,7 @@ public class ShellView implements View {
 
     private void gameWon(NotificationEvent e) {
         Game game = (Game) e.getSource();
-        System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] won. Congratulations.");
+//        System.out.println("Player " + game.getCurrentPlayer().getName() + " [" + game.getCurrentPlayer().getClass().getName() + "] won. Congratulations.");
     }
 
     private void nextRoundWithSamePlayer(NotificationEvent e) {

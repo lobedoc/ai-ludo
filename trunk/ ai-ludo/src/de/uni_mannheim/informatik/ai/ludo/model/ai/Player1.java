@@ -31,19 +31,18 @@ import java.util.ArrayList;
  * This artificial Player is a random player which acts randomly.
  * @author gtrefs
  */
-public class Player1 implements Player {
+public class Player1 implements Player{
 
     private Pawn[] pawns;
     private ArrayList<Pawn> possiblePawns = new ArrayList<Pawn>();
     private Game.Color color;
     private Path path;
     private String name;
-    private Weights weights;
+    private Individual individual;
     private Pawn pawnToMove;
 
     public Player1() {
-        this.weights = new Weights();
-        System.out.println(weights);
+        this.individual = GeneticUtility.randomIndividual();
     }
 
     @Override
@@ -63,7 +62,7 @@ public class Player1 implements Player {
         //iterate over all own pawns and choose the one with the biggest score
         for(int i=0; i<this.possiblePawns.size(); i++){
             //get the socre of the utility measure for each pawn
-            SimpleUtilityFunction utilityMeasure = new SimpleUtilityFunction(this.weights);
+            SimpleUtilityFunction utilityMeasure = new SimpleUtilityFunction(this.individual.getWeights());
             if(maximalValue< utilityMeasure.getScore(possiblePawns.get(i))) {
                 maximalValue = utilityMeasure.getScore(possiblePawns.get(i));
                 pawnToMove = possiblePawns.get(i);
@@ -154,9 +153,14 @@ public class Player1 implements Player {
         renderer.render(this);
     }
 
-    @Override
-    public void reset() {
-        this.weights = new Weights();
-        System.out.println(weights);
+    public void setIndividual(Individual individual) {
+        this.individual = individual;
+    }
+
+    /**
+     * @return the individual
+     */
+    public Individual getIndividual() {
+        return individual;
     }
 }
