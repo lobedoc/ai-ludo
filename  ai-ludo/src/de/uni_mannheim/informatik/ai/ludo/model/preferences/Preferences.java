@@ -39,6 +39,7 @@ public class Preferences {
     private static String MAX_ROUND = "ludo.game.maxRound";
     private static String MODE = "ludo.game.mode";
     private static String SIMULATION_MODE = "simulation";
+    private static String LEARNING_MODE = "learning";
     private static String DEFAULT_VIEW_LABEL = "ludo.view.defaultViewLabel";
     private static String VIEW_PROPERTY = "ludo.view.views";
     private static char VIEW_SEPARATOR = ';';
@@ -63,6 +64,13 @@ public class Preferences {
         }
         return loadedMode.equals(SIMULATION_MODE);
     }
+    public boolean isInLearningMode() {
+        if(loadedMode == null) {
+            loadedMode = getProperty(MODE);
+        }
+        return loadedMode.equals(LEARNING_MODE);
+    }
+
     // START - Singleton
     private static Preferences instance = new Preferences();
 
