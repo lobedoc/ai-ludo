@@ -1,19 +1,19 @@
 /*
-* Copyright (C) 2010 Gregor Trefs, Dominique Ritze
-* 
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-* 
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-* 
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ * Copyright (C) 2010 Gregor Trefs, Dominique Ritze
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package de.uni_mannheim.informatik.ai.ludo.model.states;
 
 import de.uni_mannheim.informatik.ai.ludo.intent.EndGameIntent;
@@ -47,14 +47,16 @@ public class DiceRolledState implements GameState {
         Pawn[] playerPawns = p.getPawns();
 
         for (Pawn pawn : playerPawns) {
-            if(playerPath.isOnStartField(pawn)) continue;
+            if (playerPath.isOnStartField(pawn)) {
+                continue;
+            }
             Field pawnField = playerPath.getFieldOfPawn(pawn);
             int fieldIndex = playerPath.getPathIndexOfField(pawnField);
             int nextFieldIndex = fieldIndex + diceCount;
             Field nextField = playerPath.getFieldByIndex(nextFieldIndex);
             if (nextField != null && playerPath.fieldNotPossedByAnotherOwnerPawn(nextField)) {
                 // The pawn has to move from the begin field if he can, so he gets the only moveable pawn
-                if (pawnField.equals(playerPath.getBeginField())) {
+                if (pawnField.equals(playerPath.getBeginField()) && !playerPath.allStartFieldsEmpty()) {
                     return new Pawn[]{pawn};
                 }
                 ret.add(pawn);
@@ -108,7 +110,7 @@ public class DiceRolledState implements GameState {
             currentPlayer.rollTheDice();
             return;
         }
-        game.setState(new MoveablePawnsMarkedState(determineMoveablePawns(currentPlayer, playerPath, diceCount),diceCount));
+        game.setState(new MoveablePawnsMarkedState(determineMoveablePawns(currentPlayer, playerPath, diceCount), diceCount));
         game.fireNotificationEvent(new NotificationEvent(game, NotificationEvent.Type.REFRESH));
         IntentFactory.getInstance().createAndDispatchTransitionIntent(game);
     }
