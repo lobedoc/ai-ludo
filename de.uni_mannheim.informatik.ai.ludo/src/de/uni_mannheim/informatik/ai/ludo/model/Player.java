@@ -89,8 +89,9 @@ public interface Player extends Renderable{
      * The game adavances to the next game state if this mehtod dispatches a {@link de.uni_mannheim.informatik.ai.ludo.intent.MoveIntent MoveIntent}.
      * If the intent has been successfull the {@link #successIntent successIntent} method is called, otherwise it is rejected and the {@link #rejectIntent rejectIntent} method is called.
      * However, eventually this method has to dispatch a MoveIntent otherwise the game will get stucked.
+     * @return pawn The pawn which should be moved
      */
-    public void movePawn();
+    public Pawn movePawn();
 
     /**
      * Called by the game if this player should roll the dice.
