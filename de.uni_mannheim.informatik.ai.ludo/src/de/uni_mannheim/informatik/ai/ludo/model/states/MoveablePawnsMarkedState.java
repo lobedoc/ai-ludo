@@ -55,7 +55,7 @@ public class MoveablePawnsMarkedState implements GameState {
             return;
         }
         Player currentPlayer = game.getCurrentPlayer();
-        currentPlayer.movePawn();
+        IntentFactory.getInstance().createAndDispatchMoveIntent(game, currentPlayer.movePawn());
     }
 
     @Override
@@ -103,7 +103,7 @@ public class MoveablePawnsMarkedState implements GameState {
         // Notify the view
         game.fireNotificationEvent(new NotificationEvent(game, NotificationEvent.Type.TRIED_TO_MOVE_NONMOVEABLE_PAWN));
         // Do it once again.
-        game.getCurrentPlayer().movePawn();
+        IntentFactory.getInstance().createAndDispatchMoveIntent(game, game.getCurrentPlayer().movePawn());
     }
 
     @Override
