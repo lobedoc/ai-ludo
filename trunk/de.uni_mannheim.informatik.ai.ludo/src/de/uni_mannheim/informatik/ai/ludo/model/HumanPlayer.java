@@ -54,7 +54,7 @@ public class HumanPlayer implements Player{
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void movePawn(){
+    public Pawn movePawn(){
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
