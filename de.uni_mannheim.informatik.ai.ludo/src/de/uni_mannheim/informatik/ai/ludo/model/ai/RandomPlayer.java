@@ -16,77 +16,20 @@
  */
 package de.uni_mannheim.informatik.ai.ludo.model.ai;
 
-import de.uni_mannheim.informatik.ai.ludo.intent.IntentFactory;
 import de.uni_mannheim.informatik.ai.ludo.intent.PlayerIntent;
-import de.uni_mannheim.informatik.ai.ludo.model.Game;
-import de.uni_mannheim.informatik.ai.ludo.model.Game.Color;
-import de.uni_mannheim.informatik.ai.ludo.model.Path;
 import de.uni_mannheim.informatik.ai.ludo.model.Pawn;
-import de.uni_mannheim.informatik.ai.ludo.model.Player;
-import de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEvent;
+import de.uni_mannheim.informatik.ai.ludo.model.PlayerAdapter;
 import de.uni_mannheim.informatik.ai.ludo.view.renderer.Renderer;
 
 /**
  * This artificial Player is a random player which acts randomly.
  * @author gtrefs
  */
-public class RandomPlayer implements Player {
-
-    private Pawn[] pawns;
-    private Game.Color color;
-    private Path path;
-    private String name;
+public class RandomPlayer extends PlayerAdapter {
 
     @Override
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    @Override
-    public Color getColor() {
-        return color;
-    }
-
-    @Override
-    public void movePawn() {
-        Pawn randomPawn = pawns[(int)(100*Math.random()%pawns.length)];
-        IntentFactory.getInstance().createAndDispatchMoveIntent(Game.getInstance(), randomPawn);
-    }
-
-    @Override
-    public void rollTheDice() {
-        Game game = Game.getInstance();
-        // Roll the dice
-        game.getDice().rollDice();
-        // Tell the view about the situation
-        game.fireNotificationEvent(new NotificationEvent(game, NotificationEvent.Type.DICE_ROLLED));
-        // Update
-        IntentFactory.getInstance().createAndDispatchRollDiceIntent(Game.getInstance(), this);
-    }
-
-    @Override
-    public void setPawns(Pawn[] pawns) {
-        this.pawns = pawns;
-    }
-
-    @Override
-    public Pawn[] getPawns() {
-        return pawns;
-    }
-
-    @Override
-    public Pawn getPawn(int index) {
-        return pawns[index % pawns.length];
-    }
-
-    @Override
-    public void setPath(Path path) {
-        this.path = path;
-    }
-
-    @Override
-    public Path getPath() {
-        return path;
+    public Pawn movePawn() {
+        return pawns[(int) (100 * Math.random() % pawns.length)];
     }
 
     @Override
@@ -103,16 +46,6 @@ public class RandomPlayer implements Player {
 
     @Override
     public void gameWonByIntent(PlayerIntent intent) {
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String getName() {
-        return this.name;
     }
 
     @Override
