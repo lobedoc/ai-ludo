@@ -16,12 +16,10 @@
 */
 package de.uni_mannheim.informatik.ai.ludo.intent;
 
-import de.uni_mannheim.informatik.ai.ludo.model.Game;
-
 /**
- *
+ * This intent is either dipatched if the user of the application decides to play a new game or if the application is in simulation mode and there are still games left.
  * @author gtrefs
  */
-public interface NewGameIntent extends Intent<Game>{
+public interface NewGameIntent extends GameIntent{
 
 }

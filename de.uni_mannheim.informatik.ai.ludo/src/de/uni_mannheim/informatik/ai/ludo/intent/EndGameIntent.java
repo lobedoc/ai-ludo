@@ -17,7 +17,7 @@
 package de.uni_mannheim.informatik.ai.ludo.intent;
 
 /**
- *
+ * This intent refelcts the intent to end a game.
  * @author gtrefs
  */
 public interface EndGameIntent extends GameIntent{

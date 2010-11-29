@@ -31,7 +31,8 @@ import de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEvent;
 import java.util.ArrayList;
 
 /**
- *
+ * This state indicates that the {@link de.uni_mannheim.informatik.ai.ludo.model.Dice Dice} has been rolled.
+ * There are several options which can be read in the corresponding documentation.
  * @author gtrefs
  */
 public class DiceRolledState implements GameState {

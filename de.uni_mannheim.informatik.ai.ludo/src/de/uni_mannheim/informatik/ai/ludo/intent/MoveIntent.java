@@ -19,10 +19,18 @@ package de.uni_mannheim.informatik.ai.ludo.intent;
 import de.uni_mannheim.informatik.ai.ludo.model.Pawn;
 
 /**
- *
+ * This intent reflects an intended move of a player.
  * @author gtrefs
  */
 public interface MoveIntent extends PlayerIntent{
+        /**
+         * Returns the pawn which should be moved.
+         * @return the pawn should be moved
+         */
         public Pawn getPawnToMove();
+        /**
+         * Sets the pawn which should be moved.
+         * @param pawnToMove The pawn which should be moved
+         */
         public void setPawnToMove(Pawn pawnToMove);
 }

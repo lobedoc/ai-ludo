@@ -20,9 +20,7 @@ import java.util.EventObject;
 
 /**
  * This event indicates that user input is required.
- * There are only two types of user input, namely roling the dice and
- * moving the pawn. In order to avoid a classes overhead both types
- * are merged into this class.
+ * Its type is determined by the enum Type.
  * Default type is a request for a user move.
  *
  * @author gtrefs

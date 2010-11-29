@@ -20,7 +20,8 @@ package de.uni_mannheim.informatik.ai.ludo.model;
 import de.uni_mannheim.informatik.ai.ludo.view.renderer.Renderer;
 
 /**
- *
+ * There are four BeginFields in the game. Each for every {@link de.uni_mannheim.informatik.ai.ludo.model.Game.Color Color}.
+ * A {@link de.uni_mannheim.informatik.ai.ludo.model.Pawn Pawn} of a specific color is set on the corresponding BeginField upon its introduction.
  * @author gtrefs
  */
 public class BeginField extends ColorField{

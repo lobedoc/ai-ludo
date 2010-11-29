@@ -17,7 +17,7 @@
 package de.uni_mannheim.informatik.ai.ludo.intent;
 
 /**
- *
+ * The intent visitor has to be implemented which wants to visit the specific {@link de.uni_mannheim.informatik.ai.ludo.intent.Intent Intent} implementations.
  * @author gtrefs
  */
 public interface IntentVisitor {

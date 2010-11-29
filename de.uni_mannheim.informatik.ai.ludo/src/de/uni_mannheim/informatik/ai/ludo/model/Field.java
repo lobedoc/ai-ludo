@@ -19,12 +19,7 @@ package de.uni_mannheim.informatik.ai.ludo.model;
 import de.uni_mannheim.informatik.ai.ludo.view.renderer.Renderable;
 
 /**
- * The interface Field represents any field on the board.
- * It has four implementing classes:
- * <b>StartField:</b> Field of the "out" area.
- * <b>BeginFiled:</b> Field which is the first field a player puts his pawns on.
- * <b>EndField:</b> Field of the "end" area.
- * <b>IntermediateField:</b> All field which are none of the above are intermediate fields.
+ * The interface Field represents a field of the game.
  * @author gtrefs
  */
 public abstract class Field implements Renderable{

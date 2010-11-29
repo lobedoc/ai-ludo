@@ -21,7 +21,6 @@ import de.uni_mannheim.informatik.ai.ludo.model.Board;
 import de.uni_mannheim.informatik.ai.ludo.model.BoardField;
 import de.uni_mannheim.informatik.ai.ludo.model.Dice;
 import de.uni_mannheim.informatik.ai.ludo.model.EndField;
-import de.uni_mannheim.informatik.ai.ludo.model.Field;
 import de.uni_mannheim.informatik.ai.ludo.model.Game;
 import de.uni_mannheim.informatik.ai.ludo.model.Path;
 import de.uni_mannheim.informatik.ai.ludo.model.Pawn;
@@ -29,7 +28,7 @@ import de.uni_mannheim.informatik.ai.ludo.model.Player;
 import de.uni_mannheim.informatik.ai.ludo.model.StartField;
 
 /**
- * This interface is to implemented by every class which wants to display the
+ * This interface is to be implemented by every class which wants to display the
  * game in some matter. The rendereing technology is up to the programmer.
  * This class implements the visitor pattern.
  * @author gtrefs

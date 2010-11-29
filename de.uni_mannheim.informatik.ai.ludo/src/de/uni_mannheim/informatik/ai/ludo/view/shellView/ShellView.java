@@ -20,7 +20,6 @@ import de.uni_mannheim.informatik.ai.ludo.Ludo;
 import de.uni_mannheim.informatik.ai.ludo.exceptions.InputDataException;
 import de.uni_mannheim.informatik.ai.ludo.model.Game;
 import de.uni_mannheim.informatik.ai.ludo.model.Pawn;
-import de.uni_mannheim.informatik.ai.ludo.model.Player;
 import de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEvent;
 import de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEventListener;
 import de.uni_mannheim.informatik.ai.ludo.model.events.RequestForUserInputEvent;
@@ -28,8 +27,6 @@ import de.uni_mannheim.informatik.ai.ludo.model.events.RequestForUserInputEventL
 import de.uni_mannheim.informatik.ai.ludo.model.preferences.Preferences;
 import de.uni_mannheim.informatik.ai.ludo.view.View;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * This view is supposed to print out the game on a shell.

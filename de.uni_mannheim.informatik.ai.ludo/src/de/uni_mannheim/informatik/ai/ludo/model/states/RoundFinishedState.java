@@ -29,7 +29,8 @@ import de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEvent;
 import de.uni_mannheim.informatik.ai.ludo.model.statistics.Statistics;
 
 /**
- *
+ * Indicates that a round has finished.
+ * Read the corresponding documentation.
  * @author gtrefs
  */
 public class RoundFinishedState implements GameState {

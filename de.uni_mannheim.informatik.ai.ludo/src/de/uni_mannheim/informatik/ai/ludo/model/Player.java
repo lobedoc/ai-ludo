@@ -21,7 +21,6 @@ import de.uni_mannheim.informatik.ai.ludo.view.renderer.Renderable;
 
 /**
  * This Player interface is the common interface all concrete players have to implement.
- *
  * @author gtrefs
  */
 public interface Player extends Renderable{
@@ -86,9 +85,8 @@ public interface Player extends Renderable{
 
     /**
      * Called by the game if this player should move one of its pawns.
-     * The game adavances to the next game state if this mehtod dispatches a {@link de.uni_mannheim.informatik.ai.ludo.intent.MoveIntent MoveIntent}.
-     * If the intent has been successfull the {@link #successIntent successIntent} method is called, otherwise it is rejected and the {@link #rejectIntent rejectIntent} method is called.
-     * However, eventually this method has to dispatch a MoveIntent otherwise the game will get stucked.
+     * The game adavances to the next game state if this mehtod returns a moveable {@link Pawn}.
+     * If the pawn is moveable the {@link #successIntent successIntent} method with a corresponding {@link de.uni_mannheim.informatik.ai.ludo.intent.MoveIntent MoveIntent} is called, otherwise it is rejected and the {@link #rejectIntent rejectIntent} method is called.
      * @return pawn The pawn which should be moved
      */
     public Pawn movePawn();

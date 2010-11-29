@@ -20,7 +20,7 @@ package de.uni_mannheim.informatik.ai.ludo.model;
 import de.uni_mannheim.informatik.ai.ludo.view.renderer.Renderer;
 
 /**
- *
+ * This class reflects a start field of the game.
  * @author gtrefs
  */
 public class StartField extends ColorField{

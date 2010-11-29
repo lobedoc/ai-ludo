@@ -20,7 +20,8 @@ package de.uni_mannheim.informatik.ai.ludo.model;
 import de.uni_mannheim.informatik.ai.ludo.view.renderer.Renderer;
 
 /**
- *
+ * This class represents an end field of a color.
+ * There are four EndFields for every color.
  * @author gtrefs
  */
 public class EndField extends ColorField{

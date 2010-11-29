@@ -30,8 +30,6 @@ import java.util.logging.Logger;
  * this application but should not be inserted by the user.
  * These informations are the artificial gamer class names, the class name of a
  * concrete StatisticsWriter and the output location of the statisticsfile.
- * Further, it provides access to internationalized messages which can be accessed
- * by any interrested party.
  * @author gtrefs
  */
 public class Preferences {
@@ -50,6 +48,10 @@ public class Preferences {
     // Load Views
     private ViewRegistry viewRegistry;
 
+    /**
+     * Get the maximum games which should be played.
+     * @return maximum games which should be played.
+     */
     public int getMaxRound() {
         if (loadedMaxRound == -1) {
             loadedMaxRound = Integer.parseInt(getProperty(MAX_ROUND));
@@ -57,6 +59,10 @@ public class Preferences {
         return loadedMaxRound;
     }
 
+    /**
+     * Determines whether the game is in simulation mode.
+     * @return true if the game is in simulation mode.
+     */
     public boolean isInSimulationMode() {
         if (loadedMode == null) {
             loadedMode = getProperty(MODE);
@@ -90,6 +96,13 @@ public class Preferences {
         }
     }
 
+    /**
+     * Loads the given property as given Clas
+     * @param <V> the Type which should be returned
+     * @param clazz
+     * @param property a String which identifies the property which should be loaded as Class
+     * @return  if successfull an instance of the given Type otherwise null
+     */
     public <V> V loadPropertyAsClass(Class<V> clazz, String property) {
         String className = getProperty(property);
         try {
@@ -104,6 +117,11 @@ public class Preferences {
         return null;
     }
 
+    /**
+     * Return the value of a property.
+     * @param arg0 property provided as string
+     * @return the value of the given property as string.
+     */
     public synchronized String getProperty(String arg0) {
         if (props == null) {
             loadProps();
@@ -113,14 +131,30 @@ public class Preferences {
         return ret;
     }
 
+    /**
+     * Returns the {@link de.uni_mannheim.informatik.ai.ludo.view.View View} which has been configured as default.
+     * @return the default View
+     */
     public View loadDefaultView() {
         return loadView(getProperty(DEFAULT_VIEW_LABEL));
     }
 
+    /**
+     * Load the given view class label String as {@link de.uni_mannheim.informatik.ai.ludo.view.View View}
+     * @param viewClassLabel view class label as String
+     * @return if successfull the View, otherwise null
+     */
     public View loadView(String viewClassLabel) {
         return loadViewAsClass(View.class, viewClassLabel);
     }
 
+    /**
+     * Loads a given view class label as specfifc class.
+     * @param <T> the return type
+     * @param clazz
+     * @param viewClassLabel thw view class label as String
+     * @return if successfull the provided return type otherwise null
+     */
     public <T> T loadViewAsClass(Class<T> clazz, String viewClassLabel) {
         return viewRegistry.getView(clazz, viewClassLabel);
     }

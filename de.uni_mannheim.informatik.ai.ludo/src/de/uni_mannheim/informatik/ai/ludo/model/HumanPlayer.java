@@ -21,7 +21,7 @@ import de.uni_mannheim.informatik.ai.ludo.model.Game.Color;
 import de.uni_mannheim.informatik.ai.ludo.view.renderer.Renderer;
 
 /**
- *
+ * This class reflects a real human player.
  * @author gtrefs
  */
 public class HumanPlayer implements Player{

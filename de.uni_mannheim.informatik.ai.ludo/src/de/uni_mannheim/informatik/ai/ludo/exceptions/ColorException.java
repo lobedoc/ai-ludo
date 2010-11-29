@@ -18,7 +18,7 @@
 package de.uni_mannheim.informatik.ai.ludo.exceptions;
 
 /**
- *
+ * This exception is thrown when two players have the same color or a player has no color.
  * @author gtrefs
  */
 public class ColorException extends Exception {

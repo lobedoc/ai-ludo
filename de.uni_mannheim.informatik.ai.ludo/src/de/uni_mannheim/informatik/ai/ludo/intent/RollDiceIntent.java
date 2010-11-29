@@ -17,7 +17,7 @@
 package de.uni_mannheim.informatik.ai.ludo.intent;
 
 /**
- *
+ * This intent reflects the player's choice to throw a dice.
  * @author gtrefs
  */
 public interface RollDiceIntent extends PlayerIntent{

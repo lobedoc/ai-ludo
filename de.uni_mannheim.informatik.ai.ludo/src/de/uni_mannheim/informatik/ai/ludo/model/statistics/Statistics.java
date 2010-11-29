@@ -29,15 +29,12 @@ import de.uni_mannheim.informatik.ai.ludo.model.Player;
 import de.uni_mannheim.informatik.ai.ludo.model.preferences.Preferences;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * The statistics class is used to store statistics specific to the game.
- * This enables easy evaluation of results, so whether a specific AI is better
- * than another.
+ * This enables easy evaluation of results, so whether a specific AI is better than another.
  * @author gtrefs
  */
 public class Statistics {

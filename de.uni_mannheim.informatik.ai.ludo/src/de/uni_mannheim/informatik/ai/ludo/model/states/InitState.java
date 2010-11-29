@@ -29,6 +29,7 @@ import de.uni_mannheim.informatik.ai.ludo.model.events.RequestForUserInputEvent;
  * The InitState is the first game state a game is in.
  * It waits for a {@link de.uni_mannheim.informatik.ai.ludo.intent.NewGameIntent NewGameIntent} in order to request initial input from the user.
  * After the initial input is provided this game state advances to the {@link de.uni_mannheim.informatik.ai.ludo.model.states.RoundStartedState RoundStartedState} if a {@link de.uni_mannheim.informatik.ai.ludo.intent.TransitionIntent TransitionIntent} occurs.
+ * Read the corresponding documentation.
  * @author gtrefs
  */
 public class InitState implements GameState{

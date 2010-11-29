@@ -31,7 +31,8 @@ import de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEvent;
 import de.uni_mannheim.informatik.ai.ludo.model.statistics.Statistics;
 
 /**
- *
+ * This state indicates that moveable {@link de.uni_mannheim.informatik.ai.ludo.model.Pawn}s have been marked and the player should move a pawn.
+ * Read the corresponding documentation.
  * @author gtrefs
  */
 public class MoveablePawnsMarkedState implements GameState {

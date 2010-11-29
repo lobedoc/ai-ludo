@@ -22,7 +22,8 @@ import de.uni_mannheim.informatik.ai.ludo.model.Game.Color;
 import de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEvent;
 
 /**
- *
+ * This class implements the {@link Player} interface.
+ * It provides methods which are common to all artificial players.
  * @author gtrefs
  */
 public abstract class PlayerAdapter implements Player{

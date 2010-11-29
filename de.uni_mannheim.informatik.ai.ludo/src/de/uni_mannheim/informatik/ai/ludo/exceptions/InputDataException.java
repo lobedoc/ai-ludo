@@ -18,7 +18,7 @@
 package de.uni_mannheim.informatik.ai.ludo.exceptions;
 
 /**
- *
+ * This exception is thrown if the initial input coming from the view contains invalid data.
  * @author gtrefs
  */
 public class InputDataException extends Exception {

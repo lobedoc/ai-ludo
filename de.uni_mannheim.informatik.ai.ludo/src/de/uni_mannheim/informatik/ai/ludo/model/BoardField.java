@@ -20,7 +20,7 @@ package de.uni_mannheim.informatik.ai.ludo.model;
 import de.uni_mannheim.informatik.ai.ludo.view.renderer.Renderer;
 
 /**
- *
+ * Represents a field on the board withour any special attributes.
  * @author gtrefs
  */
 public class BoardField extends Field{
