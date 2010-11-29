@@ -20,17 +20,25 @@ import de.uni_mannheim.informatik.ai.ludo.view.renderer.Renderable;
 import de.uni_mannheim.informatik.ai.ludo.view.renderer.Renderer;
 
 /**
- *
+ * This class represents a pawn of the game.
  * @author gtrefs
  */
 public class Pawn implements Renderable{
 
     private Player owner;
 
+    /**
+     * Returns the owner
+     * @return the Owner
+     */
     public Player getOwner() {
         return owner;
     }
 
+    /**
+     * Sets the owner
+     * @param owner the Owner
+     */
     public void setOwner(Player owner) {
         this.owner = owner;
     }

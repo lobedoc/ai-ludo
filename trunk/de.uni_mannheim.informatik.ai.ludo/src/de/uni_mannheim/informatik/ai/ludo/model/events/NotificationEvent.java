@@ -20,9 +20,7 @@ import java.util.EventObject;
 
 /**
  * This event indicates a notification to any view.
- * Such a notfication could be of the type update which should result into
- * an update of the view.
- *
+ * Its type is determined by the enum Type.
  * @author gtrefs
  */
 public class NotificationEvent extends EventObject {

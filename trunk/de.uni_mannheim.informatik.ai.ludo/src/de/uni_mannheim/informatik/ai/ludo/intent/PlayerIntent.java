@@ -19,10 +19,18 @@ package de.uni_mannheim.informatik.ai.ludo.intent;
 import de.uni_mannheim.informatik.ai.ludo.model.Player;
 
 /**
- *
+ * This interface reflects the intents which directly result from a users action.
  * @author gtrefs
  */
 public interface PlayerIntent extends GameIntent{
+    /**
+     * Return the player of this intent.
+     * @return the player which to whom this intent belongs to
+     */
     public Player getPlayer();
+    /**
+     * Set the player of this intent.
+     * @param player the player to whom this intent belongs to
+     */
     public void setPlayer(Player player);
 }

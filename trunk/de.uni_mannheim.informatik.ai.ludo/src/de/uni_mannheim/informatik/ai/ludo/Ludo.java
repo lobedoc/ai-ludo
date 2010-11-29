@@ -32,9 +32,7 @@ import java.util.logging.Logger;
 
 /**
  * Starting class and controller.
- * Takes input from any view (either OptionsView or GameView) validates 
- * and dispatches valid input to the model. The validation and dispatching
- * is done with the command pattern to enable undo and redo capabilities.
+ * Takes input from any view validates and dispatches valid input to the model. 
  * @author gtrefs
  */
 public class Ludo {
@@ -46,10 +44,13 @@ public class Ludo {
         return instance;
     }
 
-    public Ludo() {
+    private Ludo() {
         this.view = Preferences.getInstance().loadDefaultView();
     }
 
+    /**
+     * Start the application.
+     */
     public void start() {
         view.init(Game.getInstance());
         // Start the IntentDispatcher
@@ -129,6 +130,10 @@ public class Ludo {
         IntentFactory.getInstance().createAndDispatchTransitionIntent(Game.getInstance());
     }
 
+    /**
+     * End the game.
+     * @param code code to be returned by the application
+     */
     public void exit(int code){
         // End the dispatcher
         IntentDispatcher.getInstance().stop();

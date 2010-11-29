@@ -20,8 +20,8 @@ import de.uni_mannheim.informatik.ai.ludo.intent.IntentVisitor;
 
 /**
  * The GameState class is the abstract super class of all game state classes.
- * It implements the {@link de.uni_mannheim.informatik.ai.ludo.intent.IntentVisitor IntentVisitor} interface and therefore is able to visit any Intent which emerges within the game.
- * Further, the GameState represents abastract State class of the State Pattern. The next game state is determined by the current game state and the intent which occurs.
+ * It implements the {@link de.uni_mannheim.informatik.ai.ludo.intent.IntentVisitor IntentVisitor} interface and therefore is able to visit any {@link de.uni_mannheim.informatik.ai.ludo.intent.Intent Intent} which emerges within the game.
+ * Further, the GameState represents the abstract State class of the State Pattern. The next game state is determined by the current game state and the intent which occurs.
  * @author gtrefs
  * {@see http://en.wikipedia.org/wiki/State_pattern State Pattern}
  */

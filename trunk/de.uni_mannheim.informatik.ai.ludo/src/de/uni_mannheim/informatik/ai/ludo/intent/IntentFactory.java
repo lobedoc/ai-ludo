@@ -22,8 +22,8 @@ import de.uni_mannheim.informatik.ai.ludo.model.Player;
 import de.uni_mannheim.informatik.ai.ludo.model.statistics.Statistics;
 
 /**
- * This class creates concrete Intents which are dispatchable by the Intent-
- * Dispatcher.
+ * This class creates concrete Intents which are dispatchable by the {@link de.uni_mannheim.informatik.ai.ludo.intent.IntentDispatcher IntentDispatcher}.
+ * It also provides convience methods to create and dirictly dispatch and Intent
  * @author gtrefs
  */
 public class IntentFactory {

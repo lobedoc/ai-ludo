@@ -29,7 +29,8 @@ import de.uni_mannheim.informatik.ai.ludo.model.preferences.Preferences;
 import de.uni_mannheim.informatik.ai.ludo.model.statistics.Statistics;
 
 /**
- *
+ * Indicates that the current game has been won.
+ * Read the corresponding documentation.
  * @author gtrefs
  */
 public class GameWonState implements GameState {

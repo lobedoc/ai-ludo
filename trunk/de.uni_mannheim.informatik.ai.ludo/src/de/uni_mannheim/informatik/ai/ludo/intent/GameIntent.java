@@ -20,7 +20,8 @@ package de.uni_mannheim.informatik.ai.ludo.intent;
 import de.uni_mannheim.informatik.ai.ludo.model.Game;
 
 /**
- *
+ * This intent reflects an intent which is used during the game.
+ * Its target is a {@link de.uni_mannheim.informatik.ai.ludo.model.Game Game} instance.
  * @author gtrefs
  */
 public interface GameIntent extends Intent<Game>{

@@ -35,14 +35,15 @@ import java.util.logging.Logger;
 
 /**
  * The Game class is the main model class.
- * It is the registry point of all parties which are interested in model events. It has different states each of which represent a game state in the real world.
- * The game states are implemented with the {@link http://en.wikipedia.org/wiki/State_pattern state pattern}.
- * See interface {@link de.uni_mannheim.informatik.ai.ludo.model.states.GameState GameState} for further details.
- *
+ * It is the registry point of all parties which are interested in model events. 
+ * It has different {@link de.uni_mannheim.informatik.ai.ludo.model.states.GameState GameState}s each of which representing a game state in the real world.
  * @author gtrefs
  */
 public class Game implements Renderable {
 
+    /**
+     * This enum represents the colors present in the game.
+     */
     public enum Color {
 
         RED, BLUE, GREEN, YELLOW
@@ -54,14 +55,26 @@ public class Game implements Renderable {
     // UserInputEvents
     private List<RequestForUserInputEventListener> requestListeners;
 
+    /**
+     * Registers a {@link de.uni_mannheim.informatik.ai.ludo.model.events.RequestForUserInputEventListener RequestForUserInputEventListener}.
+     * @param l RequestForUserInputEventListener interested in requests for user inputs
+     */
     public void addRequestForUserInputEventListener(RequestForUserInputEventListener l) {
         requestListeners.add(l);
     }
 
+    /**
+     * Removes an {@link de.uni_mannheim.informatik.ai.ludo.model.events.RequestForUserInputEventListener RequestForUserInputEventListener}.
+     * @param l RequestForUserInputEventListener which should be removed
+     */
     public void removeRequestForUserInputEventListener(RequestForUserInputEventListener l) {
         requestListeners.remove(l);
     }
 
+    /**
+     * Fires an {@link de.uni_mannheim.informatik.ai.ludo.model.events.RequestForUserInputEvent RequestForUserInputEvent} to every registered {@link de.uni_mannheim.informatik.ai.ludo.model.events.RequestForUserInputEventListener RequestForUserInputEventListener}.
+     * @param e Event which should be fired
+     */
     public void fireRequestForUserInputEvent(RequestForUserInputEvent e) {
         synchronized (this) {
             List<RequestForUserInputEventListener> listenerList = new ArrayList<RequestForUserInputEventListener>(requestListeners);
@@ -73,14 +86,26 @@ public class Game implements Renderable {
     // Notification events
     private List<NotificationEventListener> notificationListeners;
 
+    /**
+     * Registers a {@link de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEventListener NotificationEventListener}.
+     * @param l NotificationEventListener interested in notifications
+     */
     public void addNotificationEventListener(NotificationEventListener l) {
         notificationListeners.add(l);
     }
 
+    /**
+     * Removes an {@link de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEventListener NotificationEventListener}.
+     * @param l NotificationEventListener which should be removed
+     */
     public void removeNotificationEventListener(NotificationEventListener l) {
         notificationListeners.remove(l);
     }
 
+    /**
+     * Fires an {@link de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEvent NotificationEvent} to every registered {@link de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEventListener NotificationEventListener}.
+     * @param e Event which should be fired
+     */
     public void fireNotificationEvent(NotificationEvent e) {
         synchronized (this) {
             List<NotificationEventListener> listenerList = new ArrayList<NotificationEventListener>(notificationListeners);
@@ -125,28 +150,48 @@ public class Game implements Renderable {
         renderer.render(this);
     }
 
+    /**
+     * Return total games played.
+     * @return Number of games played.
+     */
     public int getGamesPlayed() {
         return gamesPlayed;
     }
-
+    /**
+     * Iterate the total games played number by 1.
+     */
     public void increaseGamesPlayed() {
         gamesPlayed++;
     }
 
+    /**
+     * End the current game.
+     */
     public void endGame() {
         // Some crucial cleanup
         // Tell the controller, we are finished
         Ludo.getInstance().exit(0);
     }
 
+    /**
+     * Start the game.
+     */
     public void start() {
         IntentFactory.getInstance().createAndDispatchNewGameIntent(this);
     }
 
+    /**
+     * Handle an {@link de.uni_mannheim.informatik.ai.ludo.intent.Intent Intent}.
+     * @param intent Intent coming from the {@link de.uni_mannheim.informatik.ai.ludo.intent.IntentDispatcher IntentDispatcher}
+     */
     public void handleIntent(Intent intent) {
         intent.takeVisitor(state);
     }
 
+    /**
+     * Reset the game.
+     * Leads to a notification.
+     */
     public void reset() {
         board.reset();
         playerIndex = 0;
@@ -154,38 +199,65 @@ public class Game implements Renderable {
         fireNotificationEvent(new NotificationEvent(this, NotificationEvent.Type.NEW_GAME));
     }
 
+    /**
+     * Advance to the next player.
+     */
     public void nextPlayer() {
         currentPlayer = players.get(playerIndex++ % players.size());
     }
 
+    /**
+     * Increase the round count by 1.
+     */
     public void nextRound() {
         currentRound++;
     }
 
-    public int getCurrentRound(){
+    /**
+     * Returns the current roud count.
+     * @return current round count
+     */
+    public int getCurrentRound() {
         return currentRound;
     }
 
+    /**
+     * Return the current {@link de.uni_mannheim.informatik.ai.ludo.model.states.GameState GameState}
+     * @return current GameState
+     */
     public GameState getState() {
         return state;
     }
 
+    /**
+     * Sets the current {@link de.uni_mannheim.informatik.ai.ludo.model.states.GameState GameState}
+     * @param state GameState
+     */
     public void setState(GameState state) {
         this.state = state;
     }
 
+    /**
+     * Returns the Game's {@link de.uni_mannheim.informatik.ai.ludo.model.Dice Dice}.
+     * @return Dice
+     */
     public Dice getDice() {
         return dice;
     }
 
+    /**
+     * Returns the {@link Player Player} which is currently in turn.
+     * @return Player
+     */
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
 
-    public void setCurrentPlayer(Player currentPlayer) {
-        this.currentPlayer = currentPlayer;
-    }
-
+    /**
+     * Add a {@link Player Player} to the game.
+     * If the Player is not introduceable, it is not added to the game.
+     * @param Player
+     */
     public void addPlayer(Player player) {
         try {
             board.introducePlayerToTheBoard(player);
@@ -196,8 +268,11 @@ public class Game implements Renderable {
         players.add(player);
     }
 
+    /**
+     * Return all {@link Player Player}s which play this game.
+     * @return List of all Players which play this game.
+     */
     public List<Player> getPlayers() {
         return players;
     }
-
 }

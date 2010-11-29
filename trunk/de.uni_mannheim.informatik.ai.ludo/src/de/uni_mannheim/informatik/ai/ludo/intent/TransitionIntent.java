@@ -17,7 +17,8 @@
 package de.uni_mannheim.informatik.ai.ludo.intent;
 
 /**
- *
+ * This intent reflects the intent to move from one {@link de.uni_mannheim.informatik.ai.ludo.model.states.GameState GameState} to another.
+ * Such an intent may result form user input and is dispatched by the application.
  * @author gtrefs
  */
 public interface TransitionIntent extends GameIntent{

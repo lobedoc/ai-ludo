@@ -26,7 +26,8 @@ import de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEvent;
 import de.uni_mannheim.informatik.ai.ludo.model.statistics.Statistics;
 
 /**
- *
+ * Indicates, that the game has ended.
+ * Read the corresponding documentation.
  * @author gtrefs
  */
 public class EndState implements GameState{

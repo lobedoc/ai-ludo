@@ -30,7 +30,8 @@ import java.util.logging.Logger;
 
 /**
  * This class represents the game board, where the pawns and fields are on.
- * It further enables the {@link de.uni_mannheim.informatik.ai.ludo.model.Game Game} to introduce new players to board. After introduction a player has a path and pawns, which then can be used by the player to play Ludo.
+ * It further enables the {@link de.uni_mannheim.informatik.ai.ludo.model.Game Game} to introduce new players to the board.
+ * After introduction, a player has a path and pawns, which then can be used by the {@link de.uni_mannheim.informatik.ai.ludo.model.Player Player} to play Ludo.
  * @author gtrefs
  */
 public class Board implements Renderable {
@@ -63,7 +64,7 @@ public class Board implements Renderable {
         buildBeginFields();
         // build boardFieldsSortedByColor
         buildFieldsSortedByColor();
-        // Create the pawns per color; involves
+        // Create the pawns per color
         createPawnsPerColor();
     }
 
@@ -139,6 +140,11 @@ public class Board implements Renderable {
         return new Path(fieldsSortedByColor.get(color), startFieldsByColor.get(color), endFieldsByColor.get(color));
     }
 
+    /**
+     * Returns the pawns of a specific color.
+     * @param color color of the pawns
+     * @return the pawns of the provided color
+     */
     public Pawn[] getPawnsByColor(Game.Color color) {
         return pawnsByColor.get(color).toArray(new Pawn[0]);
     }
@@ -186,6 +192,11 @@ public class Board implements Renderable {
         playersByColor.put(playerColor, player);
     }
 
+    /**
+     * Returns the player with the specific color.
+     * @param color of the player
+     * @return Player instance with the provided color
+     */
     public Player getPlayerByColor(Game.Color color) {
         return playersByColor.get(color);
     }

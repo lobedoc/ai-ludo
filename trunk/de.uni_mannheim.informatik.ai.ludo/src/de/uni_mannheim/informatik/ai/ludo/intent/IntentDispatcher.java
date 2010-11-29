@@ -20,8 +20,8 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * The IntentDispatcher executes the given intents. It corresponds to the
- * executor of the command pattern. It runs asynchrounusly.
+ * The IntentDispatcher asynchronously executes the given intents.
+ * It corresponds to the executor of the command pattern.
  * @author gtrefs
  */
 public class IntentDispatcher {
@@ -31,12 +31,16 @@ public class IntentDispatcher {
 
     private Thread thread;
 
+    // The queue holding the intients (FIFO)
     private Queue<Intent> queue;
 
     private IntentDispatcher(){
         queue = new ConcurrentLinkedQueue<Intent>();
     }
 
+    /**
+     * Start the dispatcher.
+     */
     public void start(){
         if(thread != null){
             return;
@@ -45,6 +49,9 @@ public class IntentDispatcher {
         thread.start();
     }
 
+    /**
+     * Stop the dispatcher.
+     */
     public void stop(){
         if(thread != null)
             thread = null;
@@ -54,6 +61,11 @@ public class IntentDispatcher {
         return INSTANCE;
     }
 
+    /**
+     * Puts an intent on the queue.
+     * The dispatching works in FIFO order.
+     * @param intent Intent to be excecuted by the dispatcher
+     */
     public void dispatchIntent(Intent intent){
         queue.offer(intent);
     }

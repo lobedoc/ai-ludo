@@ -24,17 +24,10 @@ import de.uni_mannheim.informatik.ai.ludo.intent.RollDiceIntent;
 import de.uni_mannheim.informatik.ai.ludo.intent.TransitionIntent;
 import de.uni_mannheim.informatik.ai.ludo.model.Game;
 import de.uni_mannheim.informatik.ai.ludo.model.Player;
-import de.uni_mannheim.informatik.ai.ludo.model.events.NotificationEvent;
 
 /**
- * The IdelState class is the first state the game enters.
- * The current player is handed over to the processIntent
- * method which invokes the rollTheDice() method on the player. If user input
- * is required, a corresponding exception is thrown which results into a event
- * to the view. If the player is an artificial player, the method returns a
- * normal dice intent which is being processed by this state.
- * This processing eventually results into a state transition.
- *
+ * Indicates that a game round has started. The player is intended to roll the dice.
+ * Read the corresponding documentation.
  * @author gtrefs
  */
 public class RoundStartedState implements GameState {

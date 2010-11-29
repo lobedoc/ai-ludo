@@ -18,13 +18,10 @@ package de.uni_mannheim.informatik.ai.ludo.model.statistics;
 
 import de.uni_mannheim.informatik.ai.ludo.model.Player;
 import de.uni_mannheim.informatik.ai.ludo.model.preferences.Preferences;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.StringWriter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
