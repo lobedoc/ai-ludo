@@ -256,7 +256,7 @@ public class Game implements Renderable {
     /**
      * Add a {@link Player Player} to the game.
      * If the Player is not introduceable, it is not added to the game.
-     * @param Player
+     * @param Player the Player
      */
     public void addPlayer(Player player) {
         try {
